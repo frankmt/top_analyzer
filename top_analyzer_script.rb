@@ -1,3 +1,4 @@
+require 'top_analyzer'
 require 'top_process'
 require 'top_matcher'
 require 'optparse'
@@ -49,31 +50,11 @@ opts = OptionParser.new do |opts|
 end
 
 if (ARGV.empty?) 
-  puts "hey"
+  puts opts.help
 else  
   opts.parse!(ARGV)
   top_file = File.new(ARGV[0])
   
-  timestamps = []
-  begin
-      while (line = top_file.readline)
-          line.chomp
-      
-          if TopMatcher.new_top?(line)
-            current_timestamp = TopMatcher.extract_timestamp(line) 
-            timestamps << current_timestamp
-          end
-      
-          if TopMatcher.info?(line)
-            pid = TopMatcher.extract_info(line, :pid)
-            name = TopMatcher.extract_info(line, :process_name)
-            process = TopProcess.find_or_create(pid,name)
-            process.add_info(current_timestamp, TopMatcher.extract_info(line, options[:target]))
-          end
-      end
-  rescue EOFError
-      top_file.close
-      $stdout.print "PID," + timestamps.join(",") + "\n"
-      $stdout.print TopProcess.export_all_to_csv(timestamps, options[:limit])
-  end
+  analyzer = TopAnalyzer.new(top_file,options)
+  $stdout.print analyzer.analyze
 end

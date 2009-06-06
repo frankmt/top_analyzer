@@ -22,5 +22,5 @@ begin
 rescue EOFError
     top_file.close
     $stdout.print "PID," + timestamps.join(",") + "\n"
-    $stdout.print TopProcess.export_all_to_csv(timestamps)
+    $stdout.print TopProcess.export_all_to_csv(timestamps,0.5)
 end

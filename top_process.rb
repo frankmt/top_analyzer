@@ -19,10 +19,10 @@ class TopProcess
     new_process
   end
   
-  def self.export_all_to_csv(timestamps)
+  def self.export_all_to_csv(timestamps, limit=0)
     csv = ""
     @@all_processes.each do |process|
-      csv_process = process.to_csv(timestamps,0.5)
+      csv_process = process.to_csv(timestamps,limit)
       csv << csv_process + "\n" if csv_process
     end
     csv

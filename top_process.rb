@@ -7,14 +7,14 @@ class TopProcess
     @@all_processes = []
   end
   
-  def self.find_or_create(pid)
+  def self.find_or_create(pid, name)
     @@all_processes.each do |process|
       if process.pid == pid
         return process 
       end      
     end
     
-    new_process = TopProcess.new(pid)
+    new_process = TopProcess.new(pid, name)
     @@all_processes << new_process
     new_process
   end
@@ -27,8 +27,9 @@ class TopProcess
     csv
   end
   
-  def initialize(pid)
+  def initialize(pid, name)
     @pid = pid
+    @name = name
     @info = {}
   end
   

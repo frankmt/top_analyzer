@@ -11,18 +11,18 @@ describe TopProcess do
     describe "find_or_create" do
 
       it "should create new process when it does not exist" do
-        process = TopProcess.new(1234)
-        TopProcess.should_receive(:new).with(1234).and_return(process)
-        test_process = TopProcess.find_or_create(1234)
+        process = TopProcess.new(1234, "java")
+        TopProcess.should_receive(:new).with(1234, "java").and_return(process)
+        test_process = TopProcess.find_or_create(1234, "java")
         test_process.should == process
       end
 
       it "should find process when it does exist" do
-        old_process = TopProcess.new(4321)
+        old_process = TopProcess.find_or_create(4321, "java")
         old_process.add_info("12:03:41","85%")
 
-        test_process = TopProcess.find_or_create(4321)
-        test_process.get_info("12:03:41").should == "0"    
+        test_process = TopProcess.find_or_create(4321, "java")
+        test_process.get_info("12:03:41").should == "85%"    
       end
 
     end
@@ -32,12 +32,12 @@ describe TopProcess do
       it "should export all processes to csv" do
         timestamps = ["10:00:00", "10:00:10", "10:00:20"]
 
-        process = TopProcess.find_or_create("1234")
+        process = TopProcess.find_or_create("1234", "java")
         process.add_info(timestamps[0],"5")
         process.add_info(timestamps[2],"6.5")
         process.add_info(timestamps[1],"7")
         
-        process = TopProcess.find_or_create("4321")
+        process = TopProcess.find_or_create("4321", "java")
         process.add_info(timestamps[0],"15")
         process.add_info(timestamps[2],"16.5")
         process.add_info(timestamps[1],"17")
@@ -51,18 +51,18 @@ describe TopProcess do
   end
   
   it "should initialize pid" do
-    process = TopProcess.new(1234)
+    process = TopProcess.new(1234, "java")
     process.pid.should == 1234
   end
   
   it "should add info" do
-    process = TopProcess.new(1234)
+    process = TopProcess.new(1234, "java")
     process.add_info("12:03:41","85%")
     process.get_info("12:03:41").should == "85%"
   end
   
   it "should return 0 when there is no info" do
-    process = TopProcess.new(1234)
+    process = TopProcess.new(1234, "java")
     process.get_info("12:03:41").should == "0"    
   end
   
@@ -70,7 +70,7 @@ describe TopProcess do
 
     it "should export process info to csv according to passed timestamps" do
       timestamps = ["10:00:00", "10:00:10", "10:00:20"]
-      process = TopProcess.new("1234")
+      process = TopProcess.new("1234", "java")
       process.add_info(timestamps[0],"5")
       process.add_info(timestamps[2],"6.5")
       process.add_info(timestamps[1],"7")
@@ -79,7 +79,7 @@ describe TopProcess do
     
     it "should return 0 for timestamps that dont exist for the process" do
       timestamps = ["10:00:00", "10:00:10", "10:00:20", "10:00:30", "10:00:40"]
-      process = TopProcess.new("1234")
+      process = TopProcess.new("1234", "java")
       process.add_info(timestamps[0],"5")
       process.add_info(timestamps[2],"6.5")
       process.add_info(timestamps[1],"7")

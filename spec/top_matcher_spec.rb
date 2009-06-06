@@ -57,6 +57,11 @@ describe TopMatcher do
       TopMatcher.extract_info(line,:memory_percentage).should == "11.2"
     end
     
+    it "should extract process name" do
+      line = "29921 tomcat    17   0  822m 225m  22m S    4 11.2   0:49.56 java"
+      TopMatcher.extract_info(line,:process_name).should == "java"
+    end
+    
     
   end
   

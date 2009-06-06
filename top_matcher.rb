@@ -5,7 +5,8 @@ class TopMatcher
   
   TOP_FIELDS = {
     :pid => 1,
-    :memory_percentage => 9
+    :memory_percentage => 9,
+    :process_name => 11
   }
   
   def self.new_top?(top_line)

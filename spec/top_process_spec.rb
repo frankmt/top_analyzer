@@ -1,4 +1,4 @@
-require 'top_process'
+require 'lib/top_process'
 
 describe TopProcess do
   

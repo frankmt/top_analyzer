@@ -1,4 +1,4 @@
-require 'top_matcher'
+require 'lib/top_matcher'
 
 describe TopMatcher do
   

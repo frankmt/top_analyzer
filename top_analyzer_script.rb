@@ -14,7 +14,8 @@ begin
         
         if TopMatcher.info?(line)
           pid = TopMatcher.extract_info(line, :pid)
-          process = TopProcess.find_or_create(pid)
+          name = TopMatcher.extract_info(line, :process_name)
+          process = TopProcess.find_or_create(pid,name)
           process.add_info(current_timestamp, TopMatcher.extract_info(line, :memory_percentage))
         end
     end

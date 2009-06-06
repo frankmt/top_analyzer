@@ -9,7 +9,9 @@ class TopProcess
   
   def self.find_or_create(pid)
     @@all_processes.each do |process|
-      return process if process.pid == pid
+      if process.pid == pid
+        return process 
+      end      
     end
     
     new_process = TopProcess.new(pid)

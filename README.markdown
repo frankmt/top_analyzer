@@ -1,7 +1,7 @@
 Top Analyzer
 =================================
 
-Prints to stdout a csv file containing information extracted from a batch top output
+Prints to stdout a csv file containing information extracted from a batch top output.  
 Developed against top: procps version 3.2.7
 
 The input file can be obtained via a top command, as in this example:  
@@ -22,7 +22,7 @@ Usage: ruby top_analyzer FILE [OPTIONS]
     m - memory percentage (default)      
 
   -l, --limit=LIMIT                    monitoring lower limit
-    If this variable is set processes that have all samples lower 
+    If this variable is set, processes that have all samples lower 
     than LIMIT won't be returned in the output.
 
   -s, --starttime=TIME                 monitoring start time

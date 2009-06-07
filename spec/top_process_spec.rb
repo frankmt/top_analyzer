@@ -85,10 +85,10 @@ describe TopProcess do
     it "should return 0 for timestamps that dont exist for the process" do
       timestamps = ["10:00:00", "10:00:10", "10:00:20", "10:00:30", "10:00:40"]
       process = TopProcess.new("1234", "java")
-      process.add_info(timestamps[0],"5")
-      process.add_info(timestamps[2],"6.5")
-      process.add_info(timestamps[1],"7")
-      process.to_csv(timestamps,0.2).should == "1234 - java,5,7,6.5,0,0"      
+      process.add_info(timestamps[0],"0.3")
+      process.add_info(timestamps[2],"0.35")
+      process.add_info(timestamps[1],"0.45")
+      process.to_csv(timestamps,0.2).should == "1234 - java,0.3,0.45,0.35,0,0"      
     end
     
     it "should not return anything if it doesnt have any value above the limit" do

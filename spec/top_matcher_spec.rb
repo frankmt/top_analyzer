@@ -58,28 +58,28 @@ describe TopMatcher do
     end
     
     it "should extract cpu percentage" do
-      line = "29921 tomcat    17   0  822m 225m  22m S    4 11.2   0:49.56 java"
-      TopMatcher.extract_info(line,:cpu_percentage).should == "4"
+      line = "29921 tomcat    17   0  822m 225m  22m S    4.5 11.2   0:49.56 java"
+      TopMatcher.extract_info(line,:cpu_percentage).should == "4.5"
     end
     
-    it "should extract resident memory" do
-      line = "29921 tomcat    17   0  822 225m  22m S    4 11.2   0:49.56 java"
-      TopMatcher.extract_info(line,:resident_memory).should == "822"
-    end
-    
-    it "should extract resident memory in megabytes" do
-      line = "29921 tomcat    17   0  822m 225m  22m S    4 11.2   0:49.56 java"
-      TopMatcher.extract_info(line,:resident_memory).should == "841728.0" #822 * 1024
-    end
-
     it "should extract virtual memory" do
-      line = "29921 tomcat    17   0  822m 225  22m S    4 11.2   0:49.56 java"
-      TopMatcher.extract_info(line,:virtual_memory).should == "225"
+      line = "29921 tomcat    17   0  822.5 225m  22m S    4 11.2   0:49.56 java"
+      TopMatcher.extract_info(line,:virtual_memory).should == "822.5"
     end
     
     it "should extract virtual memory in megabytes" do
       line = "29921 tomcat    17   0  822m 225m  22m S    4 11.2   0:49.56 java"
-      TopMatcher.extract_info(line,:virtual_memory).should == "230400.0" #225 * 1024
+      TopMatcher.extract_info(line,:virtual_memory).should == "841728.0" #822 * 1024
+    end
+
+    it "should extract resident memory" do
+      line = "29921 tomcat    17   0  822m 225.5  22m S    4 11.2   0:49.56 java"
+      TopMatcher.extract_info(line,:resident_memory).should == "225.5"
+    end
+    
+    it "should extract resident memory in megabytes" do
+      line = "29921 tomcat    17   0  822m 225m  22m S    4 11.2   0:49.56 java"
+      TopMatcher.extract_info(line,:resident_memory).should == "230400.0" #225 * 1024
     end
     
     

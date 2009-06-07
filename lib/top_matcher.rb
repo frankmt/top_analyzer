@@ -1,13 +1,13 @@
 class TopMatcher
   
   TIMESTAMP_REGEX = '^top - (\d\d:\d\d:\d\d)'
-  INFO_REGEX = '(\d{1,9})\s*(\w*)\s*(\d*)\s*(\d*)\s*(\d*m?)\s*(\d*m?)\s*(\d*)m?\s*S\s*(\d*)\s*([\d[:punct:]]*)\s*([\d[:punct:]]*)\s*(\w*)'
+  INFO_REGEX = '(\d{1,9})\s*(\w*)\s*(\d*)\s*(\d*)\s*([\d[:punct:]]*m?)\s*([\d[:punct:]]*m?)\s*([\d[:punct:]]*)m?\s*S\s*([\d[:punct:]]*)\s*([\d[:punct:]]*)\s*([\d[:punct:]]*)\s*(\w*)'
   MB = 1024.0
   
   TOP_FIELDS = {
     :pid => 1,
-    :resident_memory => 5,
-    :virtual_memory => 6,
+    :virtual_memory => 5,
+    :resident_memory => 6,
     :cpu_percentage => 8,
     :memory_percentage => 9,
     :process_name => 11

@@ -62,7 +62,7 @@ class TopProcess
   
   def reaches_limit(limit)
     @info.each_value do |value|
-      return true if value.to_i > limit
+      return true if value.to_f > limit
     end
     false
   end

@@ -95,6 +95,14 @@ else
   opts.parse!(ARGV)
   top_file = File.new(ARGV[0])
   
-  analyzer = TopAnalyzer.new(top_file,options)
-  $stdout.print analyzer.analyze
+  analyzer = TopAnalyzer.new(options)
+  begin
+    while (line = top_file.readline)
+      analyzer.analyze(line)
+    end
+  rescue EOFError
+      top_file.close
+  end
+    
+  $stdout.print analyzer.get_results
 end

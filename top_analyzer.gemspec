@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.date = %q{2009-06-07}
   s.description = %q{Top Analyzer is a gem to analyzer top batch files, producing a csv output.}
   s.email = %q{frankt@franktrindade.com}
-  s.files = ["README.markdown", "VERSION.yml", "lib/top_analyzer.rb", "lib/top_matcher.rb", "lib/top_process.rb"]
+  s.files = ["README.markdown", "VERSION.yml", "bin/top_analyzer", "lib/top_analyzer.rb", "lib/top_matcher.rb", "lib/top_process.rb"]
   s.has_rdoc = false
   s.homepage = %q{http://github.com/frankmt/top_analyzer}
   s.rdoc_options = ["--inline-source", "--charset=UTF-8"]

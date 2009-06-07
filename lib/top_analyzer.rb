@@ -1,3 +1,6 @@
+require 'lib/top_process'
+require 'lib/top_matcher'
+
 class TopAnalyzer
   
   def initialize(options={})

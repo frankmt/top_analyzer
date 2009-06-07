@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 
-require 'lib/top_analyzer'
-require 'lib/top_process'
-require 'lib/top_matcher'
+# require 'lib/top_analyzer'
+# require 'lib/top_process'
+# require 'lib/top_matcher'
 require 'date'
 require 'optparse'
 

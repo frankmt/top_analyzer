@@ -33,12 +33,21 @@ opts = OptionParser.new do |opts|
     monitoring target
       Defines which variable from the top command will be analyzed
       Current TARGET options are:
-      m - memory percentage      
+      r - resident memory
+      v - virtual memory
+      c - cpu percentage
+      m - memory percentage (default)      
     DESC
     
     case target
     when "m"
       options[:target] = :memory_percentage
+    when "c"
+      options[:target] = :cpu_percentage
+    when "r"
+      options[:target] = :resident_memory  
+    when "v"
+      options[:target] = :virtual_memory  
     else
       options[:target] = :memory_percentage
     end

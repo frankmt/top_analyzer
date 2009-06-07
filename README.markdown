@@ -16,8 +16,21 @@ Usage: ruby top_analyzer FILE [OPTIONS]
   -t, --target=TARGET                  monitoring target
     Defines which variable from the top command will be analyzed
     Current TARGET options are:
-    m - memory percentage      
+    r - resident memory
+    v - virtual memory
+    c - cpu percentage
+    m - memory percentage (default)      
 
   -l, --limit=LIMIT                    monitoring lower limit
     If this variable is set processes that have all samples lower 
     than LIMIT won't be returned in the output.
+
+  -s, --starttime=TIME                 monitoring start time
+    If this variable is set only samples obtained after TIME
+    will be considered. TIME must be provided in the HH:MM:SS 
+    format
+
+  -e, --endtime=TIME                   monitoring start time
+    If this variable is set only samples obtained before TIME
+    will be considered. TIME must be provided in the HH:MM:SS 
+    format

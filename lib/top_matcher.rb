@@ -1,10 +1,14 @@
 class TopMatcher
   
   TIMESTAMP_REGEX = '^top - (\d\d:\d\d:\d\d)'
-  INFO_REGEX = '(\d{1,9})\s*(\w*)\s*(\d*)\s*(\d*)\s*(\d*m?)\s*(\d*m?)\s*(\d*m?)\s*S\s*(\d*)\s*([\d[:punct:]]*)\s*([\d[:punct:]]*)\s*(\w*)'
+  INFO_REGEX = '(\d{1,9})\s*(\w*)\s*(\d*)\s*(\d*)\s*(\d*m?)\s*(\d*m?)\s*(\d*)m?\s*S\s*(\d*)\s*([\d[:punct:]]*)\s*([\d[:punct:]]*)\s*(\w*)'
+  MB = 1024.0
   
   TOP_FIELDS = {
     :pid => 1,
+    :resident_memory => 5,
+    :virtual_memory => 6,
+    :cpu_percentage => 8,
     :memory_percentage => 9,
     :process_name => 11
   }
@@ -22,7 +26,15 @@ class TopMatcher
   end
   
   def self.extract_info(top_line, field)
-    top_line.match(INFO_REGEX)[TOP_FIELDS[field]]
+    info = top_line.match(INFO_REGEX)[TOP_FIELDS[field]]
+    info.include?("m") ? TopMatcher.to_megabyte(info) : info
   end
+  
+  private 
+  
+  def self.to_megabyte(bytes_str)
+    (bytes_str.to_f * MB).to_s
+  end
+  
   
 end

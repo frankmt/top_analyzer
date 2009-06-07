@@ -1,4 +1,4 @@
-require 'lib/top_process'
+require File.dirname(__FILE__) + '/spec_helper'
 
 describe TopProcess do
   

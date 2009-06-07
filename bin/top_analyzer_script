@@ -3,6 +3,7 @@
 require 'lib/top_analyzer'
 require 'lib/top_process'
 require 'lib/top_matcher'
+require 'date'
 require 'optparse'
 
 options = {}
@@ -51,6 +52,27 @@ opts = OptionParser.new do |opts|
     DESC
     options[:limit] = limit.to_f
   end
+  
+  options[:start_time] = nil
+  opts.on( '-st', '--starttime=TIME', <<-DESC ) do |start_time|
+    monitoring start time
+      If this variable is set only samples obtained after TIME
+      will be considered. TIME must be provided in the HH:MM:SS 
+      format
+    DESC
+    options[:start_time] = DateTime.strptime(start_time, "%H:%M:%S")
+  end
+  
+  options[:end_time] = nil
+  opts.on( '-et', '--endtime=TIME', <<-DESC ) do |end_time|
+    monitoring start time
+      If this variable is set only samples obtained before TIME
+      will be considered. TIME must be provided in the HH:MM:SS 
+      format
+    DESC
+    options[:end_time] = DateTime.strptime(end_time, "%H:%M:%S")
+  end
+  
 
   opts.on( '-h', '--help', 'Display this screen' ) do
     puts opts

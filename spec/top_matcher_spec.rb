@@ -1,4 +1,4 @@
-require 'lib/top_matcher'
+require File.dirname(__FILE__) + '/spec_helper'
 
 describe TopMatcher do
   

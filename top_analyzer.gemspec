@@ -2,11 +2,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{top_analyzer}
-  s.version = "0.2.1"
+  s.version = "0.2.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Francisco Trindade"]
-  s.date = %q{2009-06-07}
+  s.date = %q{2009-06-08}
   s.default_executable = %q{top_analyzer}
   s.description = %q{Top Analyzer is a gem to analyzer top batch files, producing a csv output.}
   s.email = %q{frank@franktrindade.com}
@@ -22,6 +22,7 @@ Gem::Specification.new do |s|
      "lib/top_analyzer.rb",
      "lib/top_matcher.rb",
      "lib/top_process.rb",
+     "pkg/top_analyzer-0.2.0.gem",
      "rsc/long_example.csv",
      "rsc/long_example.log",
      "rsc/mini_example.log",

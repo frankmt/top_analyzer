@@ -1,5 +1,7 @@
-require 'lib/top_process'
-require 'lib/top_matcher'
+require 'top_process'
+require 'top_matcher'
+require 'date'
+require 'optparse'
 
 class TopAnalyzer
   
